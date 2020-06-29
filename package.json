@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "my-test-repo",
+  "repository": {},
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": " jest --config jest.config.js "
+  },
+  "dependencies": {
+    "-": "0.0.1",
+    "apollo-boost": "^0.4.9",
+    "graphql": "^15.1.0",
+    "graphql-tag": "^2.10.3",
+    "jest": "^26.1.0",
+    "node-fetch": "^2.6.0",
+    "save": "^2.4.0"
+  }
+}
