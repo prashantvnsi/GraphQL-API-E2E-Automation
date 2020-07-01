@@ -1,7 +1,7 @@
 // Write the tests here
 
 const {apolloGraphQLClient} = require ("../client-setup"); 
-const {listQuery} = require ("../queries/my-queries");
+const {retreiveBookings, chauffeurLogin} = require ("../queries/my-queries");
 let client;
 
 const accountDetails = { 
@@ -13,10 +13,29 @@ describe ("Tests the bookings query", () => {
   });
 test ("Fetches all the bookings", async () => { 
     const graphQLdata = await client.query ({ 
-      query: listQuery, 
+      query: retreiveBookings, 
     }); 
     expect (graphQLdata) .toBeTruthy (); 
-    // display the id of the 1st booking
     console.log(graphQLdata.data.bookings.items[1].id);
+  }); 
+});
+
+describe ("Test Chauffeur Login Endpoint", () => { 
+  beforeAll (() => { 
+    client = apolloGraphQLClient (accountDetails); 
+  });
+  test ("it should have success value as true", async () => { 
+    const graphQLdata = await client.mutate ({ 
+      mutation: chauffeurLogin,
+    }); 
+    expect (graphQLdata) .toBeTruthy (); 
+    expect(graphQLdata.data.chauffeurLogin.success).toBe(true);
+  }); 
+  test ("it should return a bearer token", async () => { 
+    const graphQLdata = await client.mutate ({ 
+      mutation: chauffeurLogin,
+    }); 
+    expect (graphQLdata) .toBeTruthy (); 
+    expect(graphQLdata.data.chauffeurLogin.accessToken.tokenType).toBe('bearer');
   }); 
 });

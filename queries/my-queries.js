@@ -1,7 +1,7 @@
 // Enter all the queries here
 
 const gql = require ("graphql-tag");
-const listQuery = gql` 
+const retreiveBookings = gql` 
 {
     bookings(limit: 10, filter: { matching: "a",timeState: upcoming, status: all }) {
       pageInfo{
@@ -25,4 +25,24 @@ const listQuery = gql`
     }
   }
 `;
-module.exports = {listQuery}
+
+const chauffeurLogin = gql` 
+mutation {
+    chauffeurLogin(
+      clientId: "u24XpG36M8EcZXp3OIO5LyeZLM6YMZj6",
+      email: "prashant.tiwari+driver@blacklane.com",
+      password: "blacklane",
+      resourceOwnerType: driver ,
+      grantType: implicit
+    ){
+      success,
+      message,
+      accessToken {
+        accessToken
+        tokenType
+        expiresIn
+      }
+    }
+  }
+`;
+module.exports = {retreiveBookings, chauffeurLogin}
