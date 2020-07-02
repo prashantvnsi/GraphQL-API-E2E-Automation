@@ -1,5 +1,5 @@
 // Enter all the queries here
-
+const {mutationData} = require("../testdata")
 const gql = require ("graphql-tag");
 const retreiveBookings = gql` 
 {

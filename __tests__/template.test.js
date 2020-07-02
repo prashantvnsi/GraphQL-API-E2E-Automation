@@ -1,11 +1,11 @@
 // Write the tests here
-
+const {urls} = require("../testdata")
 const {apolloGraphQLClient} = require ("../client-setup"); 
 const {retreiveBookings, chauffeurLogin} = require ("../queries/my-queries");
 let client;
 
 const accountDetails = { 
-  url: "https://graphql.blacklane.io/graphql", 
+  url: urls.test_env
 };
 describe ("Tests the bookings query", () => { 
   beforeAll (() => { 
